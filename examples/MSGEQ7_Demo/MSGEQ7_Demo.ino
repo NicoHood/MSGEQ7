@@ -20,6 +20,8 @@
  and only use the left or right value of the library. Choose the same analogpin for left/right then
  *The Output only ranges from 0-255 for saving memory and for easy use. It doesnt matter much.
  If you still want to read up to 1023 remove the divide 4 in the library and use uint16_t
+ *The IC has a standard value at about 10. You should keep that in mind.
+ In this case the Led always glims a bit. Have a look at the map() function to improve this.
  */
 
 //MSGEQ7 
@@ -50,6 +52,7 @@ void loop() {
     myMSGEQ7.read();
     //let the led blink to the beat
     analogWrite(ledPin, (myMSGEQ7.left[frequency]+myMSGEQ7.right[frequency])/2);
+    //analogWrite(ledPin, myMSGEQ7.left[frequency]); //uncomment for mono at Pin A0 only
   }
 }
 
