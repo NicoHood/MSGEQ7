@@ -32,7 +32,7 @@ const uint8_t analogPinLeft = A0; //violett
 const uint8_t analogPinRight = A1; //cyan
 MSGEQ7 myMSGEQ7(resetPin, strobePin, analogPinLeft, analogPinRight);
 
-uint8_t frequency =0;     //0 for BASS
+uint8_t frequency =0;     //0 for BASS 6 for 16kHz
 const uint8_t ledPin = 3; //PWM Pin, green
 
 long previousMillis = 0; // will store last time LED was updated
@@ -55,4 +55,3 @@ void loop() {
     //analogWrite(ledPin, myMSGEQ7.left[frequency]); //uncomment for mono at Pin A0 only
   }
 }
-
