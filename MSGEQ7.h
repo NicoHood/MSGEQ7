@@ -1,40 +1,79 @@
 /*
-  MSGEQ7.h - library - description
- Copyright (c) 2014 NicoHood.  All right reserved.
- 
- Reads MSGEQ7 IC with 7 different frequencys from range 0-255
- 63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25KHz, 16kHz
- */
+Copyright (c) 2014 NicoHood
+See the readme for credit to other people.
 
-// ensure this library description is only included once
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+
 #ifndef MSGEQ7_h
 #define MSGEQ7_h
 
-#include "Arduino.h"
+// needed for digitalRead() and analogRead()
+#include <Arduino.h>
 
-#define TOTALREADINGS 5  //number of reading times for smoothing, default 5
+//================================================================================
+// MSGEQ7
+//================================================================================
 
-class MSGEQ7{
+//number of reading times for smoothing, default 5
+#define MSGEQ7_READINGS 5  
+
+// basic frequencys definitions (0-6 valid)
+#define MSGEQ7_BASS 0
+#define MSGEQ7_LOW 0
+#define MSGEQ7_MID 3
+#define MSGEQ7_HIGH 5
+
+// channel defintion for get/peek methodes
+#define MSGEQ7_LEFT_RIGHT 0
+#define MSGEQ7_LEFT 1
+#define MSGEQ7_RIGHT 2
+
+class CMSGEQ7{
 public:
-  MSGEQ7(uint8_t, uint8_t, uint8_t ,uint8_t); //constructor
+	CMSGEQ7(void);
 
-  uint8_t left[7];  //left  input 0-255
-  uint8_t right[7]; //right input 0-255
-  uint8_t mode;     //0=smooth, 1=direct
+	// user functions to interact with the IC
+	void begin(uint8_t resetPin, uint8_t strobPine,
+		uint8_t analogPinLeft, uint8_t analogPinRight = 0xFF);
+	void reset(void);
+	void read(void);
 
-  void reset();
-  void read();
+	// function for the user to access the values, default l+r
+	uint8_t get(uint8_t frequency, uint8_t channel = MSGEQ7_LEFT_RIGHT);
+	uint8_t peek(uint8_t frequency, uint8_t channel = MSGEQ7_LEFT_RIGHT);
 
 private:
-  uint8_t _resetPin;
-  uint8_t _strobePin;
-  uint8_t _analogPinLeft;
-  uint8_t _analogPinRight;
+	// pins to interact with the IC
+	uint8_t _resetPin;
+	uint8_t _strobePin;
+	uint8_t _analogPinLeft;
+	uint8_t _analogPinRight;
 
-  uint8_t _left[7][TOTALREADINGS]; //array of all input values
-  uint8_t _right[7][TOTALREADINGS];
-  uint8_t _countRead;
+	// array of all input values
+	uint8_t _left[7][MSGEQ7_READINGS];
+	uint8_t _right[7][MSGEQ7_READINGS];
+	uint8_t _countRead;
 };
+
+extern CMSGEQ7 MSGEQ7;
 
 #endif
 
