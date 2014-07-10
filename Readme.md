@@ -1,6 +1,6 @@
 MSGEQ7 library
 ==============
-[!Header](MSGEQ7.png)
+![Header](MSGEQ7.png)
 
 Reads MSGEQ7 IC with 7 different frequencies from range 0-255
 
@@ -18,7 +18,7 @@ Hardware setup
 ==============
 See the [datasheet](https://www.sparkfun.com/datasheets/Components/General/MSGEQ7.pdf) for more information.
 
-[!Schematic](MSGEQ7_Schematic.png)
+![Schematic](MSGEQ7_Schematic.png)
 
 Additional Information
 ======================
