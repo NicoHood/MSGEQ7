@@ -5,7 +5,7 @@ MSGEQ7 Library 1.2 + Board v1.0
 The MSGEQ7 is an IC designed to analyze music on different frequencies.
 This library reads the MSGEQ7 with 7 different frequencies from range 0-255, stereo or mono.
 It can be used to visualize audio through Leds for example.
-This repository also includes the source of an [breakout board]().
+This repository also includes the source of an [breakout board](https://github.com/NicoHood/MSGEQ7/tree/dev#breakout-board).
 
 The frequencies are:
 63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25KHz, 16kHz
@@ -30,6 +30,7 @@ Uses [FastLED library](https://github.com/FastLED/FastLED)
 More projects/contact:
 http://www.NicoHood.de
 
+
 Hardware Setup
 ==============
 To use the MSGEQ7 you first need a few other parts and connect them properly.
@@ -50,14 +51,22 @@ See the [data sheet](https://www.sparkfun.com/datasheets/Components/General/MSGE
 * Led or Led strips
 * 1x 220 Ohm Resistor (for Led)
 
-####Breadboard Setup
+###Breadboard Setup
 This would be an example breadboard setup for the Led example.
 
 ![Schematic](breadboard/MSGEQ7_Schematic.png)
 
 ![Breadboard Setup](breadboard/MSGEQ7_Breadboard.png)
 
-####Breakout Board
+
+Software installation
+=====================
+Install the library as you are used to.
+More information can be found [here](http://arduino.cc/en/guide/libraries).
+
+
+Breakout Board
+==============
 The MSGEQ7 Breakout Board lets you easily hook up an audio source or microphone to your microcontroller.
 You may also use a 2nd audio output to pass the audio signal to music boxes again.
 You can solder a 6 or 8 pin header to the board and connect it to a breadboard for example.
@@ -76,6 +85,7 @@ You can find all needed files in the "board" folder.
 * [Schematic](board/MSGEQ7.pdf) (click view raw)
 * [PCB](board/MSGEQ7.png)
 * [Source + Gerber](board/)
+
 
 Additional Information
 ======================
@@ -114,7 +124,7 @@ Version History
 * Added general functionality
 ```
 
-Licence and Copyright
+License and Copyright
 =====================
 If you use this library for any cool project let me know!
 
