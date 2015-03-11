@@ -21,11 +21,10 @@ Uses [FastLED library](https://github.com/FastLED/FastLED)
 * Update pins of examples
 * board pictures + breadboard
 * New header pic?
-* additional information readme
-* API documentation
+* update additional information readme
+* API documentation (add to SW installation section)
 * optional 10 bit resolution?
 * different smooth code
-* breakout board link above
 
 More projects/contact:
 http://www.NicoHood.de
@@ -71,20 +70,24 @@ The MSGEQ7 Breakout Board lets you easily hook up an audio source or microphone 
 You may also use a 2nd audio output to pass the audio signal to music boxes again.
 You can solder a 6 or 8 pin header to the board and connect it to a breadboard for example.
 It is fully open source so you can create a copy for yourself or modify it.
-You can find all needed files in the "board" folder.
 
 #####Features:
 * Stereo music analyze
 * Audio input via 3.5mm Jack
-* Additional Audio output
+* Additional audio output
 * Additional audio in/output via pin header
 * Mounting holes
 * Breadboard compatible
 * Easy to solder (DIP parts)
 * [Open Source Hardware](http://www.oshwa.org/definition/)
-* [Schematic](board/MSGEQ7.pdf) (click view raw)
-* [PCB](board/MSGEQ7.png)
-* [Source + Gerber](board/)
+
+#####Files:
+You can find all needed files in the [board](board/) folder.
+Click view raw to download the PDF files.
+
+![Schematic](board/MSGEQ7_Schematic.png)
+
+![PCB](board/MSGEQ7_PCB.png)
 
 
 Additional Information

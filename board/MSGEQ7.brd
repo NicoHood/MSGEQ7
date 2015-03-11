@@ -629,7 +629,7 @@ design rules under a new name.</description>
 </element>
 <element name="C5" library="SparkFun-Capacitors" package="CAP-PTH-SMALL" value="100nF" x="20.32" y="24.765" smashed="yes" rot="R180">
 <attribute name="NAME" x="19.01825" y="23.65375" size="0.8128" layer="25" rot="R180" align="center"/>
-<attribute name="VALUE" x="21.6535" y="24.66975" size="0.8128" layer="28" rot="SR270" align="center"/>
+<attribute name="VALUE" x="21.6535" y="24.66975" size="0.8128" layer="27" rot="SR270" align="center"/>
 </element>
 <element name="C6" library="SparkFun-Capacitors" package="CAP-PTH-SMALL" value="10nF" x="17.78" y="12.065" smashed="yes">
 <attribute name="NAME" x="19.08175" y="13.17625" size="0.8128" layer="25" rot="SR0" align="center"/>
@@ -648,7 +648,7 @@ design rules under a new name.</description>
 <attribute name="VALUE" x="16.4465" y="4.7625" size="1.27" layer="27" ratio="10" align="center"/>
 </element>
 <element name="IC2" library="SparkFun-AnalogIC" package="DIL-08" value="MSGEQ7DIL" x="8.89" y="20.955" smashed="yes" rot="R180">
-<attribute name="NAME" x="8.8265" y="21.844" size="1.27" layer="25" ratio="10" align="center"/>
+<attribute name="NAME" x="8.8265" y="22.1615" size="1.27" layer="25" ratio="10" align="center"/>
 <attribute name="VALUE" x="8.9535" y="20.32" size="1.27" layer="27" ratio="10" rot="R180" align="center"/>
 </element>
 <element name="JP1" library="SparkFun-Connectors" package="1X08" value="" x="1.905" y="4.445" smashed="yes" rot="R90">
