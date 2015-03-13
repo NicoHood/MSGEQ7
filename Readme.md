@@ -25,7 +25,6 @@ Uses [FastLED library](https://github.com/FastLED/FastLED)
 * API documentation (add to SW installation section)
 * optional 10 bit resolution?
 * different smooth code
-* update pcb + schematic image with a lager monitor..
 
 More projects/contact:
 http://www.NicoHood.de
