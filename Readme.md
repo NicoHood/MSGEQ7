@@ -25,6 +25,7 @@ Uses [FastLED library](https://github.com/FastLED/FastLED)
 * API documentation (add to SW installation section)
 * optional 10 bit resolution?
 * different smooth code
+* update pcb + schematic image with a lager monitor..
 
 More projects/contact:
 http://www.NicoHood.de
@@ -85,8 +86,10 @@ It is fully open source so you can create a copy for yourself or modify it.
 You can find all needed files in the [board](board/) folder.
 Click view raw to download the PDF files.
 
+#####Schematic
 ![Schematic](board/MSGEQ7_Schematic.png)
 
+#####PCB
 ![PCB](board/MSGEQ7_PCB.png)
 
 
