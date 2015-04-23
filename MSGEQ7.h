@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2014 NicoHood
+Copyright (c) 2014-2015 NicoHood
 See the readme for credit to other people.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,59 +21,87 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+// include guard
+#pragma once
 
-#ifndef MSGEQ7_h
-#define MSGEQ7_h
+// software version
+#define MSGEQ7_VERSION 120
 
-// needed for digitalRead() and analogRead()
+// needed for digitalRead(), analogRead() and micros()
 #include <Arduino.h>
 
 //================================================================================
 // MSGEQ7
 //================================================================================
 
-//number of reading times for smoothing, default 5
-#define MSGEQ7_READINGS 5  
+//#define MSGEQ7_10BIT
+#define ReadsPerSecond(f) (1000000UL / (f))
 
-// basic frequencys definitions (0-6 valid)
+// basic frequencys definitions (0-6 valid, 7 channels)
+#define MSGEQ7_0 0
+#define MSGEQ7_1 1
+#define MSGEQ7_2 2
+#define MSGEQ7_3 3
+#define MSGEQ7_4 4
+#define MSGEQ7_5 5
+#define MSGEQ7_6 6
 #define MSGEQ7_BASS 0
 #define MSGEQ7_LOW 0
 #define MSGEQ7_MID 3
 #define MSGEQ7_HIGH 5
 
-// channel defintion for get/peek methodes
-#define MSGEQ7_LEFT_RIGHT 0
-#define MSGEQ7_LEFT 1
-#define MSGEQ7_RIGHT 2
+// resolution dependant settings
+#ifdef MSGEQ7_10BIT
+typedef uint16_t MSGEQ7_data_t;
+#define MSGEQ7_IN_MIN 20
+#define MSGEQ7_IN_MAX 1023
+#define MSGEQ7_OUT_MIN 0
+#define MSGEQ7_OUT_MAX 1023
+#else
+typedef uint8_t MSGEQ7_data_t;
+#define MSGEQ7_IN_MIN 20
+#define MSGEQ7_IN_MAX 255
+#define MSGEQ7_OUT_MIN 0
+#define MSGEQ7_OUT_MAX 255
+#endif
 
+template <bool smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 class CMSGEQ7{
 public:
 	CMSGEQ7(void);
 
-	// user functions to interact with the IC
-	void begin(uint8_t resetPin, uint8_t strobPine,
-		uint8_t analogPinLeft, uint8_t analogPinRight = 0xFF);
+	// functions to get the IC ready for reading
+	void begin(void);
+	void end(void);
 	void reset(void);
-	void read(void);
 
-	// function for the user to access the values, default l+r
-	uint8_t get(uint8_t frequency, uint8_t channel = MSGEQ7_LEFT_RIGHT);
-	uint8_t peek(uint8_t frequency, uint8_t channel = MSGEQ7_LEFT_RIGHT);
+	// functions to read the IC values and save them to the internal array
+	bool read(void);
+	bool read(const uint32_t currentMicros, const uint32_t interval);
+	bool read(const uint32_t interval);
+
+	// function for the user to access the values
+	MSGEQ7_data_t get(const uint8_t frequency, const uint8_t channel);
+	MSGEQ7_data_t get(const uint8_t frequency);
+	MSGEQ7_data_t getVolume(uint8_t channel);
+	MSGEQ7_data_t getVolume(void);
+
+	// tools
+	MSGEQ7_data_t map(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX,
+		MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);
 
 private:
-	// pins to interact with the IC
-	uint8_t _resetPin;
-	uint8_t _strobePin;
-	uint8_t _analogPinLeft;
-	uint8_t _analogPinRight;
-
 	// array of all input values
-	uint8_t _left[7][MSGEQ7_READINGS];
-	uint8_t _right[7][MSGEQ7_READINGS];
-	uint8_t _countRead;
+	typedef struct frequency{
+		MSGEQ7_data_t pin[1 + sizeof...(analogPins)];
+	};
+	frequency frequencies[7];
+
+	void nop(...) {
+		// little hack to take as many arguments as possible
+		// to execute several functions for the analogPins
+	}
 };
 
-extern CMSGEQ7 MSGEQ7;
-
-#endif
-
+// implementation inline, moved to another .hpp file
+#include "MSGEQ7.hpp"
