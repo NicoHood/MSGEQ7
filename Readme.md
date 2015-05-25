@@ -21,7 +21,7 @@ The frequencies are:
 * Tools to reduce noise
 * A [Breakout Board](https://github.com/NicoHood/MSGEQ7/tree/dev#breakout-board).
 
-####Examples included:**
+####Examples included:
 * Led: blinks led, shows basic usage
 * Serial: shows spectrum via serial and how to use more channels
 * FastLED: blinks led strip with different frequencies. Shows how to use different syntax.
@@ -51,9 +51,9 @@ See the [data sheet](https://www.sparkfun.com/datasheets/Components/General/MSGE
 ###Breadboard Setup
 This would be an example breadboard setup for the Led example.
 
-![Schematic](breadboard/MSGEQ7_Schematic.png)
+![Schematic](extras/breadboard/MSGEQ7_Schematic.png)
 
-![Breadboard Setup](breadboard/MSGEQ7_Breadboard.png)
+![Breadboard Setup](extras/breadboard/MSGEQ7_Breadboard.png)
 
 
 Software installation
@@ -160,14 +160,14 @@ It is fully open source so you can create a copy for yourself or modify it.
 
 
 #####Files:
-You can find all needed files in the [board](board/) folder.
+You can find all needed files in the [board](extras/board/) folder.
 Click view raw to download the PDF files.
 
 #####Schematic
-![Schematic](board/MSGEQ7_Schematic.png)
+![Schematic](extras/board/MSGEQ7_Schematic.png)
 
 #####PCB
-![PCB](board/MSGEQ7_PCB.png)
+![PCB](extras/board/MSGEQ7_PCB.png)
 
 
 Additional Information
@@ -198,6 +198,9 @@ In this case the Led always glims a bit. Have a look at the map() function to im
 Version History
 ===============
 ```
+1.2.1 Release (xx.xx.2015)
+* Added 1.6.x library schema
+
 1.2 Release (23.04.2015)
 * Added breakout board files v1.0
 * Optimized performance

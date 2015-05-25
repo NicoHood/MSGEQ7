@@ -25,7 +25,7 @@ THE SOFTWARE.
 #pragma once
 
 // software version
-#define MSGEQ7_VERSION 120
+#define MSGEQ7_VERSION 121
 
 // needed for digitalRead(), analogRead() and micros()
 #include <Arduino.h>
