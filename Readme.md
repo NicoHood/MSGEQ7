@@ -138,6 +138,8 @@ You may also use a 2nd audio output to pass the audio signal to music boxes agai
 You can solder a 6 or 8 pin header to the board and connect it to a breadboard for example.
 It is fully open source so you can create a copy for yourself or modify it.
 
+![board](/extras/pictures/board.jpg)
+
 #####Features:
 * Stereo music analyze
 * Audio input via 3.5mm Jack
@@ -158,6 +160,7 @@ It is fully open source so you can create a copy for yourself or modify it.
 * 2x 33pF Capacitor
 * 2x 200k Ohm Resistor
 
+![pcb](/extras/pictures/pcb.jpg)
 
 #####Files:
 You can find all needed files in the [board](extras/board/) folder.
@@ -168,6 +171,14 @@ Click view raw to download the PDF files.
 
 #####PCB
 ![PCB](extras/board/MSGEQ7_PCB.png)
+
+#####Soldering the board
+You need to cut off the area around the audio jack a bit first to fit them better.
+A knife will work best here. After this just solder all components, starting with
+the capacitors and resistors to the IC sockets, the audio jacks and pinheader.
+Any beginner can do this, no SMD component is used.
+
+![audio_jack](/extras/pictures/audio_jack.jpg)
 
 
 Additional Information
@@ -200,6 +211,8 @@ Version History
 ```
 1.2.1 Release (xx.xx.2015)
 * Added 1.6.x library schema
+* Added board pictures
+* Improved documentation
 
 1.2 Release (23.04.2015)
 * Added breakout board files v1.0
