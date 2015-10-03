@@ -105,7 +105,7 @@ By default this returns an `uint8_t` value, for 10bit resolution `uint16_t`.
 Depending on how many analog pins you have attached you can select the channel here (0-n).
 You can also leave out the channel variable to get an average volume of all channels.
 
-#####`MSGEQ7_data_t map(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX, MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);`
+#####`MSGEQ7_data_t mapNoise(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX, MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);`
 Maps the input from a given input range to an output range.
 This is useful to reduce noise. All MSGEQ7 produce a noise of about 15-19 if no music is played.
 This macro can be used to remap the input. You can leave out the last 4 arguments, they will be replaced with default values.
@@ -212,6 +212,9 @@ Version History
 1.2.1 Release (xx.xx.2015)
 * Added 1.6.x library schema
 * Added board pictures
+* Fix reading the wrong frequency over time
+* Smooth from 0-255 now
+* Renamed map function, moved outside the main class
 TODO
 * Improved documentation
 

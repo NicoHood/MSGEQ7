@@ -34,7 +34,11 @@ THE SOFTWARE.
 // MSGEQ7
 //================================================================================
 
+// Use full 10 bit analog readings for MSGEQ7
+// TODO make this more useful with DUE an >10 bit ADC
 //#define MSGEQ7_10BIT
+
+// FPS makro
 #define ReadsPerSecond(f) (1000000UL / (f))
 
 // basic frequencys definitions (0-6 valid, 7 channels)
@@ -65,7 +69,11 @@ typedef uint8_t MSGEQ7_data_t;
 #define MSGEQ7_OUT_MAX 255
 #endif
 
-template <bool smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+// Tools TODO better name?
+inline MSGEQ7_data_t mapNoise(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX,
+		MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);
+
+template <uint8_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 class CMSGEQ7{
 public:
 	CMSGEQ7(void);
@@ -85,10 +93,6 @@ public:
 	MSGEQ7_data_t get(const uint8_t frequency);
 	MSGEQ7_data_t getVolume(uint8_t channel);
 	MSGEQ7_data_t getVolume(void);
-
-	// tools
-	MSGEQ7_data_t map(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX,
-		MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);
 
 private:
 	// array of all input values
