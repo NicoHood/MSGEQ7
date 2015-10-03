@@ -178,7 +178,7 @@ A knife will work best here. After this just solder all components, starting wit
 the capacitors and resistors to the IC sockets, the audio jacks and pinheader.
 Any beginner can do this, no SMD component is used.
 
-![audio_jack](/extras/pictures/audio_jack.jpg)
+![audio_jacks](/extras/pictures/audio_jacks.jpg)
 
 
 Additional Information
@@ -212,6 +212,7 @@ Version History
 1.2.1 Release (xx.xx.2015)
 * Added 1.6.x library schema
 * Added board pictures
+TODO
 * Improved documentation
 
 1.2 Release (23.04.2015)
