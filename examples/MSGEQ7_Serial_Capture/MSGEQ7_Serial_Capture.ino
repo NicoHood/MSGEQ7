@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2014-2015 NicoHood
+  Copyright (c) 2015 NicoHood
   See the readme for credit to other people.
 
   MSGEQ7 Capture example
@@ -24,7 +24,7 @@
 CMSGEQ7<MSGEQ7_SMOOTH, pinReset, pinStrobe, pinAnalogLeft, pinAnalogRight> MSGEQ7;
 
 void setup() {
-  // this will set the IC ready for reading
+  // Set the IC ready for reading
   MSGEQ7.begin();
 
   // Serial setup with faster baud rate gives more FPS (115200)
@@ -51,14 +51,14 @@ void setup() {
 void loop() {
   static uint32_t count = 0;
 
-  // analyze without delay every interval
+  // Analyze without delay every interval
   bool newReading = MSGEQ7.read(MSGEQ7_INTERVAL);
 
   // Serial raw debug output
   if (newReading) {
     count++;
 
-    // all channels together
+    // All channels together
     Serial.print(MSGEQ7.get(MSGEQ7_BASS));
     if (count % 10 != 0)
       Serial.print(F(", "));
