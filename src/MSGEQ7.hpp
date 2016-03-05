@@ -125,17 +125,18 @@ read(void){
 #endif
 		};
 
-		// save smooth values
+		// Save smooth values
 		if (smooth){
 			for (uint8_t p = 0; p < (1 + sizeof...(analogPins)); p++){
-				// round up if value increases
+				// Round up if value increases
 				if (frequencies[i].pin[p] < f.pin[p])
 					frequencies[i].pin[p]++;
-				// TODO improve formula
-				frequencies[i].pin[p] = uint16_t(frequencies[i].pin[p] * smooth + f.pin[p] * (255-smooth)) / 255;
+
+				// Smooth value
+				frequencies[i].pin[p] = uint16_t(frequencies[i].pin[p] * smooth + f.pin[p] * (255 - smooth)) / 255;
 			}
 		}
-		// save peek values
+		// Save peek values
 		else
 			frequencies[i] = f;
 
