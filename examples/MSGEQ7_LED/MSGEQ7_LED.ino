@@ -38,6 +38,7 @@ void loop() {
 
   // Led output
   if (newReading) {
+    // Read bass frequency
     uint8_t input = MSGEQ7.get(MSGEQ7_BASS);
 
     // Output PWM signal via Led to the music beat
