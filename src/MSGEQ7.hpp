@@ -101,8 +101,8 @@ reset(void){
 template <uint8_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 bool CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 read(void){
-	// reset the IC, otherwise it will get out of sync after a while
-	reset(); 
+	// reset the IC frequently, otherwise it will get out of sync after a while
+	reset();
 
 	// read all 7 channels
 	// 63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25KHz, 16kHz
@@ -120,8 +120,8 @@ read(void){
 			analogRead(firstAnalogPin),
 				analogRead(analogPins)...
 #else
-			(analogRead(firstAnalogPin) >> 2),
-				(analogRead(analogPins) >> 2)...
+			MSGEQ7_data_t(analogRead(firstAnalogPin) >> 2),
+				MSGEQ7_data_t(analogRead(analogPins) >> 2)...
 #endif
 		};
 
@@ -145,23 +145,19 @@ read(void){
 
 template <uint8_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 bool CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
-read(const uint32_t currentMicros, const uint32_t interval){
-	// read without delay
+read(const uint32_t interval){
+	// Read without delay
+	// TODO use static variable??
 	static uint32_t prevMicros = 0;
+	uint32_t currentMicros = micros();
 	if ((currentMicros - prevMicros) > interval) {
 		prevMicros = currentMicros;
 
-		// analyze
+		// Analyze
 		read();
 		return true;
 	}
 	return false;
-}
-
-template <uint8_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
-bool CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
-read(const uint32_t interval){
-	return read(micros(), interval);
 }
 
 
@@ -223,4 +219,3 @@ getVolume(void){
 	// return the average of all channels
 	return vol / 7;
 }
-

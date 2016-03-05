@@ -21,27 +21,27 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-// include guard
+// Include guard
 #pragma once
 
-// software version
+// Software version
 #define MSGEQ7_VERSION 121
 
-// needed for digitalRead(), analogRead() and micros()
+// Needed for digitalRead(), analogRead() and micros()
 #include <Arduino.h>
 
 //================================================================================
 // MSGEQ7
 //================================================================================
 
-// Use full 10 bit analog readings for MSGEQ7
+// Use (optional) full 10 bit analog readings for MSGEQ7
 // TODO make this more useful with DUE an >10 bit ADC
 //#define MSGEQ7_10BIT
 
 // FPS makro
 #define ReadsPerSecond(f) (1000000UL / (f))
 
-// basic frequencys definitions (0-6 valid, 7 channels)
+// Basic frequencys definitions (0-6 valid, 7 channels)
 #define MSGEQ7_0 0
 #define MSGEQ7_1 1
 #define MSGEQ7_2 2
@@ -54,10 +54,10 @@ THE SOFTWARE.
 #define MSGEQ7_MID 3
 #define MSGEQ7_HIGH 5
 
-// resolution dependant settings
+// Resolution dependant settings
 #ifdef MSGEQ7_10BIT
 typedef uint16_t MSGEQ7_data_t;
-#define MSGEQ7_IN_MIN 20
+#define MSGEQ7_IN_MIN 80
 #define MSGEQ7_IN_MAX 1023
 #define MSGEQ7_OUT_MIN 0
 #define MSGEQ7_OUT_MAX 1023
@@ -85,7 +85,6 @@ public:
 
 	// functions to read the IC values and save them to the internal array
 	bool read(void);
-	bool read(const uint32_t currentMicros, const uint32_t interval);
 	bool read(const uint32_t interval);
 
 	// function for the user to access the values
@@ -95,8 +94,8 @@ public:
 	MSGEQ7_data_t getVolume(void);
 
 private:
-	// array of all input values
-	typedef struct frequency{
+	// Array of all input values
+	struct frequency{
 		MSGEQ7_data_t pin[1 + sizeof...(analogPins)];
 	};
 	frequency frequencies[7];
