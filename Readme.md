@@ -91,6 +91,7 @@ create a copy for yourself or modify it.
 * [Open Source Hardware](http://www.oshwa.org/definition/)
 
 ##### Required parts:
+* 1x Breakout Board
 * 2x [MSGEQ7 IC](https://www.sparkfun.com/products/10468)
 * 2x [Audio Jack 3.5mm](https://www.sparkfun.com/products/8032)
 * 8 Pin Header Male
