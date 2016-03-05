@@ -12,14 +12,14 @@
 // FastLED
 #include "FastLED.h"
 
-#define LED_PINS     // DATA_PIN, or DATA_PIN, CLOCK_PIN, or empty for SPI
+#define LED_PINS    MOSI, SCK // DATA_PIN, or DATA_PIN, CLOCK_PIN
 #define COLOR_ORDER GRB
-#define CHIPSET     LPD8806
-#define NUM_LEDS    20
+#define CHIPSET     WS2801 // WS2811 LPD8806
+#define NUM_LEDS    32
 
 #define BRIGHTNESS  255  // reduce power consumption
 #define DITHER      255  // try 0 to disable flickering
-#define CORRECTION TypicalLEDStrip
+#define CORRECTION  TypicalLEDStrip
 
 CRGB leds[NUM_LEDS]; // Define the array of leds
 
@@ -36,7 +36,7 @@ CMSGEQ7<MSGEQ7_SMOOTH, pinReset, pinStrobe, pinAnalogLeft, pinAnalogRight> MSGEQ
 
 void setup() {
   // FastLED setup
-  FastLED.addLeds<CHIPSET, LED_PINS COLOR_ORDER>(leds, NUM_LEDS).setCorrection(CORRECTION);
+  FastLED.addLeds<CHIPSET, LED_PINS, COLOR_ORDER>(leds, NUM_LEDS).setCorrection(CORRECTION);
   FastLED.setBrightness( BRIGHTNESS );
   FastLED.setDither(DITHER);
   FastLED.show(); // needed to reset leds to zero
