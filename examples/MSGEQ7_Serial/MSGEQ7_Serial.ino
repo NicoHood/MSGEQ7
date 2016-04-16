@@ -48,7 +48,7 @@ void serialBars(uint16_t FPS) {
   uint8_t input = MSGEQ7.get(MSGEQ7_BASS);
 
   // Reduce noise
-  input = MSGEQ7.map(input);
+  input = mapNoise(input);
 
   // Save the difference between the last beat
   static uint8_t lastInput = 0;
