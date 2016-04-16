@@ -17,7 +17,7 @@ reset	KEYWORD2
 read	KEYWORD2
 get	KEYWORD2
 getVolume	KEYWORD2
-map	KEYWORD2
+mapNoise	KEYWORD2
 
 
 #######################################
