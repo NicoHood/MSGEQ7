@@ -1,4 +1,4 @@
-MSGEQ7 Library 1.2.1 + Board v1.0
+MSGEQ7 Library 1.2.2 + Board v1.0
 =================================
 ![Header](header.png)
 
@@ -382,6 +382,9 @@ www.nicohood.de
 Version History
 ===============
 ```
+1.2.2 Release (16.04.2016)
+* Fixed mapNoise() example and keyword #4
+
 1.2.1 Release (05.03.2016)
 * Added 1.6.x library schema
 * Added board pictures
