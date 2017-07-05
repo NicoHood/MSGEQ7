@@ -2,16 +2,11 @@ MSGEQ7 Library 1.2.2 + Board v1.0
 =================================
 ![Header](header.png)
 
-The MSGEQ7 is an IC designed to analyze music on different frequencies. This
-library reads the MSGEQ7 with 7 different frequencies from range 0-255, stereo
-or mono. It can be used to visualize audio through Leds for example. This
-repository also includes the source of an
-[Breakout Board](#breakout-board).
+The MSGEQ7 library provides an interface to an arbitrary number of MSGEQ7 chips, to convert analog voltage output from the chips to digital data. The data is of values from 0 to 255 (8 bits). Output from each chip, which is input to the library, is referred to in the documentation for this library as a "channel".
 
-The frequencies are: 63Hz, 160Hz, 400Hz, 1kHz, 2.5kHz, 6.25KHz, 16kHz
+The MSGEQ7 is an IC designed to analyze sound (actually, any signal of varying voltages; in the case of sound or music, a signal as from a microphone). The chip measures aspects of input in seven frequency bands, and can provide output related to one (at a time) of these bands as an analog DC voltage signal. The frequency bands the chip analyzes are centered on: 63, 160, 400, 1K, 2.5K, 6.25K, and 16K Hertz.
 
-This library started as my very first project and became better over the time.
-To be honest it got very complex, due to better optimization and flexibility.
+This repository also includes source information for a [Breakout Board](#breakout-board) with two MSGEQ7 chips. In a case of using two channels of output from a breakout board, referring to one channel as "mono" and two channels as "stereo" makes sense.
 
 #### Features
 * IDE 1.6.x with every Arduino compatibly
