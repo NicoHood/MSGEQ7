@@ -36,7 +36,8 @@ THE SOFTWARE.
 
 // Use (optional) full 10 bit analog readings for MSGEQ7
 // TODO make this more useful with DUE an >10 bit ADC
-//#define MSGEQ7_10BIT
+// #define MSGEQ7_10BIT
+// #define MSGEQ7_12BIT
 
 // FPS makro
 #define ReadsPerSecond(f) (1000000UL / (f))
@@ -55,7 +56,13 @@ THE SOFTWARE.
 #define MSGEQ7_HIGH 5
 
 // Resolution dependant settings
-#ifdef MSGEQ7_10BIT
+#ifdef MSGEQ7_12BIT
+typedef uint16_t MSGEQ7_data_t;
+#define MSGEQ7_IN_MIN 320
+#define MSGEQ7_IN_MAX 4096
+#define MSGEQ7_OUT_MIN 0
+#define MSGEQ7_OUT_MAX 4096
+#elif defined(MSGEQ7_10BIT)
 typedef uint16_t MSGEQ7_data_t;
 #define MSGEQ7_IN_MIN 80
 #define MSGEQ7_IN_MAX 1023
@@ -73,7 +80,7 @@ typedef uint8_t MSGEQ7_data_t;
 inline MSGEQ7_data_t mapNoise(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX,
 		MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);
 
-template <uint8_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 class CMSGEQ7{
 public:
 	CMSGEQ7(void);
@@ -104,6 +111,10 @@ private:
 		// little hack to take as many arguments as possible
 		// to execute several functions for the analogPins
 	}
+
+	// This calculates the value based on what MSGEQ7_data_t is defined.
+	// This assumes the analog pin resolution is 10 bit.
+	MSGEQ7_data_t getAnalogReadPin(uint8_t pin);
 };
 
 // implementation inline, moved to another .hpp file
