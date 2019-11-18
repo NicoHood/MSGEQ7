@@ -231,6 +231,6 @@ getAnalogReadPin(uint8_t pin) {
 			read = max10BitVal;
 		}
 
-		return map(read, 0, max10BitVal, 0, __UINT8_MAX__);
+		return read >> 2;
 	#endif
 }
