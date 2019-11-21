@@ -52,7 +52,7 @@ MSGEQ7_data_t mapNoise(MSGEQ7_data_t x, MSGEQ7_data_t in_min, MSGEQ7_data_t in_m
 //================================================================================
 
 // initialize the instance's variables
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 CMSGEQ7(void)
 {
@@ -64,7 +64,7 @@ CMSGEQ7(void)
 // IC setup
 //================================================================================
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 void CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 begin(void){
 	// do whatever is required to initialize the IC
@@ -74,7 +74,7 @@ begin(void){
 	nop((pinMode(analogPins, INPUT), 0)...);
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 void CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 end(void){
 	// set pins to input again to safely remove connections if needed
@@ -84,7 +84,7 @@ end(void){
 	nop((pinMode(analogPins, INPUT), 0)...);
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 void CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 reset(void){
 	// only this setting seems to works properly
@@ -98,7 +98,7 @@ reset(void){
 // read
 //================================================================================
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 bool CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 read(void){
 	// reset the IC frequently, otherwise it will get out of sync after a while
@@ -114,7 +114,6 @@ read(void){
 		// allow the output to settle
 		delayMicroseconds(36);
 
-		// read pins with 8 bit resolution
 		frequency f = (frequency){
 			getAnalogReadPin(firstAnalogPin),
 			getAnalogReadPin(analogPins)...
@@ -139,7 +138,7 @@ read(void){
 	return true;
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 bool CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 read(const uint32_t interval){
 	// Read without delay
@@ -161,7 +160,7 @@ read(const uint32_t interval){
 // get values
 //================================================================================
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 MSGEQ7_data_t CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 get(const uint8_t frequency, const uint8_t channel){
 	// dont read out of bounds
@@ -172,7 +171,7 @@ get(const uint8_t frequency, const uint8_t channel){
 	return frequencies[frequency].pin[channel];
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 MSGEQ7_data_t CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 get(const uint8_t frequency){
 	// dont read out of bounds
@@ -188,7 +187,7 @@ get(const uint8_t frequency){
 	return (average / (1 + sizeof...(analogPins)));
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 MSGEQ7_data_t CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 getVolume(uint8_t channel){
 	// dont read out of bounds
@@ -204,7 +203,7 @@ getVolume(uint8_t channel){
 	return vol / 7;
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 MSGEQ7_data_t CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 getVolume(void){
 	// add all frequencies of all channels to the overall volume
@@ -216,21 +215,20 @@ getVolume(void){
 	return vol / 7;
 }
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 MSGEQ7_data_t CMSGEQ7<smooth, resetPin, strobePin, firstAnalogPin, analogPins ...>::
 getAnalogReadPin(uint8_t pin) {
-	// This assumes the analogReadResolution is already at 10 bit.
 	int read = analogRead(pin);
 	#if defined(MSGEQ7_10BIT) || defined(MSGEQ7_12BIT)
 		// Return the value as int.
 		return read;
 	#else
-		// get max resolution of analog pin and map it to 8 bit range. Some systems, esp8266, have range from 0 - 1024 so there is a max range of 1023.
+		// Some systems, esp8266, have range from 0 - 1024 so there is a max range of 1023.
 		uint16_t max10BitVal = 1023;
 		if (read > max10BitVal) {
 			read = max10BitVal;
 		}
-
+		
 		return read >> 2;
 	#endif
 }

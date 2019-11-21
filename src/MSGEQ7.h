@@ -80,7 +80,7 @@ typedef uint8_t MSGEQ7_data_t;
 inline MSGEQ7_data_t mapNoise(MSGEQ7_data_t x, MSGEQ7_data_t in_min = MSGEQ7_IN_MIN, MSGEQ7_data_t in_max = MSGEQ7_IN_MAX,
 		MSGEQ7_data_t out_min = MSGEQ7_OUT_MIN, MSGEQ7_data_t out_max = MSGEQ7_OUT_MAX);
 
-template <uint16_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
+template <MSGEQ7_data_t smooth, uint8_t resetPin, uint8_t strobePin, uint8_t firstAnalogPin, uint8_t ...analogPins>
 class CMSGEQ7{
 public:
 	CMSGEQ7(void);
@@ -112,8 +112,7 @@ private:
 		// to execute several functions for the analogPins
 	}
 
-	// This calculates the value based on what MSGEQ7_data_t is defined.
-	// This assumes the analog pin resolution is 10 bit.
+	// This returns the value based on what MSGEQ7_data_t is defined.
 	MSGEQ7_data_t getAnalogReadPin(uint8_t pin);
 };
 
