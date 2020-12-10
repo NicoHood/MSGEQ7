@@ -8,7 +8,7 @@ The MSGEQ7 is an IC designed to analyze sound (actually, any signal of varying v
 
 This repository also includes source information for a [Breakout Board](#breakout-board) with two MSGEQ7 chips. In a case of using two channels of output from a breakout board, referring to one channel as "mono" and two channels as "stereo" makes sense.
 
-<a href="https://www.buymeacoffee.com/Mnwg9NrCK" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+<a href="https://www.buymeacoffee.com/nicohood" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
 
 #### Features
 * IDE 1.6.x with every Arduino compatibly
